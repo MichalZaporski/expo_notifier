@@ -1,0 +1,17 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+
+# Specify your gem's dependencies in expo_notifier.gemspec
+gemspec
+
+gem 'bundler-audit', '~> 0.9.3'
+gem 'irb', '~> 1.16'
+gem 'minitest', '~> 6.0.1'
+gem 'prism', '~> 1.6.0'
+gem 'rake', '~> 13.3.1'
+gem 'rubocop', '~> 1.82.1'
+gem 'rubocop-espago', '~> 1.2'
+gem 'rubocop-sorbet', '~> 0.11'
+gem 'sorbet', '~> 0.6.12872'
+gem 'tapioca', '~> 0.17.10'
