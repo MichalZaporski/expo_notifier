@@ -1,23 +1,21 @@
+[![Ruby](https://github.com/MichalZaporski/expo_notifier/actions/workflows/main.yml/badge.svg)](https://github.com/MichalZaporski/expo_notifier/actions/workflows/main.yml)
+
 # ExpoNotifier
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/expo_notifier`. To experiment with that code, run `bin/console` for an interactive prompt.
+A Ruby gem for sending push notifications via Expo, serving as a lightweight and flexible alternative to the official Expo library. It is built on Faraday for HTTP communication and offers greater configurability, along with full support for Sorbet type checking.
 
 ## Installation
-
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
 
 Install the gem and add to the application's Gemfile by executing:
 
 ```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+bundle add expo_notifier
 ```
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
 ```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+gem install expo_notifier
 ```
 
 ## Usage
@@ -32,7 +30,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/expo_notifier.
+Bug reports and pull requests are welcome on GitHub at https://github.com/MichalZaporski/expo_notifier.
 
 ## License
 

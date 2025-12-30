@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-$LOAD_PATH.unshift File.expand_path("../lib", __dir__)
-require "expo_notifier"
+$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
+require 'expo_notifier'
 
-require "minitest/autorun"
+require 'minitest/autorun'

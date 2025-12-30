@@ -8,15 +8,19 @@ Gem::Specification.new do |spec|
   spec.authors = ['Michał Zaporski']
   spec.email = ['focus16k@gmail.com']
 
-  spec.summary = 'TODO: Write a short summary, because RubyGems requires one.'
-  spec.description = 'TODO: Write a longer description or delete this line.'
-  spec.homepage = "TODO: Put your gem's website or public repo URL here."
+  spec.summary = 'A Ruby gem for sending Expo push notifications, built on Faraday.'
+  spec.description = <<~DESC
+    A Ruby gem for sending push notifications via Expo, serving as a lightweight and flexible
+    alternative to the official Expo library. It is built on Faraday for HTTP communication
+    and offers greater configurability, along with full support for Sorbet type checking.
+  DESC
+  spec.homepage = 'https://github.com/MichalZaporski/expo_notifier'
   spec.license = 'MIT'
   spec.required_ruby_version = '>= 3.0.0'
 
   spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = "TODO: Put your gem's public repo URL here."
-  spec.metadata['changelog_uri'] = "TODO: Put your gem's CHANGELOG.md URL here."
+  spec.metadata['source_code_uri'] = 'https://github.com/MichalZaporski/expo_notifier'
+  spec.metadata['changelog_uri'] = 'https://github.com/MichalZaporski/expo_notifier/blob/main/CHANGELOG.md'
   spec.metadata['rubygems_mfa_required'] = 'true'
 
   # Specify which files should be added to the gem when it is released.
@@ -35,6 +39,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'booleans', '~> 0.1'
   spec.add_dependency 'shale', '~> 1.2'
   spec.add_dependency 'shale-builder', '~> 0.8'
+
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
 end
