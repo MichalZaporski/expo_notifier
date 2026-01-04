@@ -774,12 +774,11 @@ module ERB::Escape; end
 #
 # source://erb//lib/erb/util.rb#33
 module ERB::Util
+  include ::ActiveSupport::CoreExt::ERBUtil
   include ::ERB::Escape
+  extend ::ActiveSupport::CoreExt::ERBUtil
 
   private
-
-  # source://erb//lib/erb/util.rb#48
-  def h(_arg0); end
 
   # cgi.gem <= v0.3.2
   #
@@ -793,10 +792,10 @@ module ERB::Util
 
   class << self
     # source://erb//lib/erb/util.rb#49
-    def h(_arg0); end
+    def h(s); end
 
     # source://erb//lib/erb/util.rb#47
-    def html_escape(_arg0); end
+    def html_escape(s); end
 
     # cgi.gem <= v0.3.2
     #

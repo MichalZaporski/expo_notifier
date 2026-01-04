@@ -13,16 +13,16 @@ class Date
   def initialize(*_arg0); end
 
   # source://date//lib/date.rb#4
-  def +(_arg0); end
+  def +(other); end
 
   # source://date//lib/date.rb#4
-  def -(_arg0); end
+  def -(other); end
 
   # source://date//lib/date.rb#4
   def <<(_arg0); end
 
   # source://date//lib/date.rb#4
-  def <=>(_arg0); end
+  def <=>(other); end
 
   # source://date//lib/date.rb#4
   def ===(_arg0); end
@@ -206,7 +206,7 @@ class Date
   def to_s; end
 
   # source://date//lib/date.rb#4
-  def to_time; end
+  def to_time(form = T.unsafe(nil)); end
 
   # source://date//lib/date.rb#4
   def tuesday?; end

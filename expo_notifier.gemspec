@@ -36,9 +36,12 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
+  spec.add_dependency 'activesupport', '>= 6.0'
   spec.add_dependency 'booleans', '~> 0.1'
+  spec.add_dependency 'faraday', '~> 2.0'
   spec.add_dependency 'shale', '~> 1.2'
   spec.add_dependency 'shale-builder', '~> 0.8'
+  spec.add_dependency 'sorbet-runtime', '~> 0.6.12873'
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html

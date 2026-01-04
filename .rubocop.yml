@@ -6,3 +6,12 @@ inherit_gem:
 
 Bundler/GemComment:
   Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Sorbet/RedundantExtendTSig:
+  Enabled: false
+
+Sorbet/ForbidTSig:
+  Enabled: false
