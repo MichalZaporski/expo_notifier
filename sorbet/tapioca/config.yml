@@ -10,7 +10,6 @@ gem:
     - language_server-protocol
     - rubocop-ast
     - rubocop-sorbet
-    - regexp_parser
     - bundler-audit
   # doc: true
   # workers: 5

@@ -41,7 +41,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'faraday', '~> 2.0'
   spec.add_dependency 'shale', '~> 1.2'
   spec.add_dependency 'shale-builder', '~> 0.8'
-  spec.add_dependency 'sorbet-runtime', '~> 0.6.12873'
+  spec.add_dependency 'sorbet-runtime', '>= 0.5'
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
