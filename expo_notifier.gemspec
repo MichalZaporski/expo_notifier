@@ -10,9 +10,9 @@ Gem::Specification.new do |spec|
 
   spec.summary = 'A Ruby gem for sending Expo push notifications, built on Faraday.'
   spec.description = <<~DESC
-    A Ruby gem for sending push notifications via Expo, serving as a lightweight and flexible
-    alternative to the official Expo library. It is built on Faraday for HTTP communication
-    and offers greater configurability, along with full support for Sorbet type checking.
+    A Ruby client for the Expo Push Notifications API, providing typed request/response objects,
+    automatic payload mapping, error classification, and configurable HTTP behavior.
+    It is built on Faraday for HTTP communication.
   DESC
   spec.homepage = 'https://github.com/MichalZaporski/expo_notifier'
   spec.license = 'MIT'
