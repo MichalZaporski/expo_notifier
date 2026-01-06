@@ -246,8 +246,7 @@ module ExpoNotifier
                    json = JSON.parse(decompressed)
 
                    json['ids'] == ['receipt-id']
-                 end
-                 .to_return(
+                 end.to_return( # rubocop:disable Style/MethodCalledOnDoEndBlock
                    status:  200,
                    body:    '{"data":{}}',
                    headers: { 'Content-Type' => 'application/json' },
@@ -269,8 +268,7 @@ module ExpoNotifier
 
                    json = JSON.parse(req.body)
                    json['ids'] == ['receipt-id']
-                 end
-                 .to_return(
+                 end.to_return( # rubocop:disable Style/MethodCalledOnDoEndBlock
                    status:  200,
                    body:    '{"data":{}}',
                    headers: { 'Content-Type' => 'application/json' },
