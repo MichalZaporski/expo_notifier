@@ -22,15 +22,6 @@ VCR.configure do |c|
 end
 
 class TestCase < Minitest::Test
-  #: [R] (Symbol, String, Class) { -> R } -> R
-  def stub_request_and_raise(method, url, error_class, &block)
-    stub = stub_request(method, url).and_raise(error_class)
-    val = block.call
-    remove_request_stub(stub)
-
-    val
-  end
-
   #: [R] (?Hash[Symbol, untyped]) { -> R } -> R
   def cassette(options = {}, &block)
     VCR.use_cassette(cassette_name, options, &block)

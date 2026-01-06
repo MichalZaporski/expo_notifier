@@ -25,17 +25,180 @@ module ExpoNotifier
         end
 
         response = T.must(request.response)
-        assert response.success?, 'response should be successful'
+        assert_equal 200, response.status_code
+        assert response.duration.is_a?(Float)
+        assert response.success?
+        assert !response.malformed_request_error?
+        assert !response.too_many_requests_error?
+        assert !response.server_error?
+        assert !response.communication_error?
+        assert response.headers.is_a?(Hash)
 
         body = T.must(response.body)
         assert_equal 1, T.must(body.data).size
+        assert_equal [], body.errors
 
         ticket = T.must(body.data).first
-
         assert_equal 'ok', ticket&.status
         assert ticket&.id
         assert_nil ticket&.message
         assert_nil ticket&.details
+      end
+
+      should 'send one successful and one unsuccessful push notification' do
+        mapped_params = Mapper::PushMessages.build do |msgs|
+          msgs.push_message do |msg|
+            msg.to    = ['ExponentPushToken[J58oHWJwFIfCiY1ZAUd8tI]', 'ExponentPushToken[xd]']
+            msg.title = 'Test title'
+            msg.body  = 'Test body'
+            msg.data  = { order_id: 123 }
+          end
+        end
+
+        request = SendPushNotifications.new(mapped_params)
+
+        cassette do
+          request.execute
+        end
+
+        response = T.must(request.response)
+        assert_equal 200, response.status_code
+        assert response.duration.is_a?(Float)
+        assert response.success?
+        assert !response.malformed_request_error?
+        assert !response.too_many_requests_error?
+        assert !response.server_error?
+        assert !response.communication_error?
+
+        body = T.must(response.body)
+        assert_equal 2, T.must(body.data).size
+        assert_equal [], body.errors
+
+        ticket = T.must(body.data).first
+        assert_equal 'ok', ticket&.status
+        assert ticket&.id
+        assert_nil ticket&.message
+        assert_nil ticket&.details
+
+        ticket = T.must(body.data).last
+        assert_equal 'error', ticket&.status
+        assert_nil ticket&.id
+        assert_equal '"ExponentPushToken[xd]" is not a valid Expo push token', ticket&.message
+        assert_equal 'DeviceNotRegistered', ticket&.details&.error
+        assert_equal 'ExponentPushToken[xd]', ticket&.details&.expo_push_token
+      end
+
+      should 'handle 400 response code' do
+        mapped_params = Mapper::PushMessages.build do |msgs|
+          msgs.push_message do |msg|
+            msg.to    = ['x'] * 101
+            msg.body  = 'Test body'
+          end
+        end
+
+        request = SendPushNotifications.new(mapped_params)
+
+        cassette do
+          request.execute
+        end
+
+        response = T.must(request.response)
+        assert_equal 400, response.status_code
+        assert response.duration.is_a?(Float)
+        assert !response.success?
+        assert response.malformed_request_error?
+        assert !response.too_many_requests_error?
+        assert !response.server_error?
+        assert !response.communication_error?
+
+        body = T.must(response.body)
+        assert_equal [], body.data
+        assert_equal 1, body.errors&.size
+
+        error = T.must(body.errors).first
+        assert_equal 'VALIDATION_ERROR', error&.code
+        assert_equal '"0.to": String must contain at most 100 character(s).', error&.message
+      end
+
+      should 'handle 429 response code' do
+        stub_request(:post, 'https://exp.host/--/api/v2/push/send')
+          .to_return(
+            status: 429,
+            body:   '',
+          )
+
+        mapped_params = Mapper::PushMessages.build do |msgs|
+          msgs.push_message do |msg|
+            msg.to    = ['ExponentPushToken[J58oHWJwFIfCiY1ZAUd8tI]']
+            msg.body  = 'Test body'
+          end
+        end
+
+        request = SendPushNotifications.new(mapped_params)
+        request.execute
+
+        response = T.must(request.response)
+        assert_equal 429, response.status_code
+        assert response.duration.is_a?(Float)
+        assert !response.success?
+        assert !response.malformed_request_error?
+        assert response.too_many_requests_error?
+        assert !response.server_error?
+        assert !response.communication_error?
+        assert_nil response.body
+      end
+
+      should 'handle 500 response code' do
+        stub_request(:post, 'https://exp.host/--/api/v2/push/send')
+          .to_return(
+            status: 500,
+            body:   '',
+          )
+
+        mapped_params = Mapper::PushMessages.build do |msgs|
+          msgs.push_message do |msg|
+            msg.to    = ['ExponentPushToken[J58oHWJwFIfCiY1ZAUd8tI]']
+            msg.body  = 'Test body'
+          end
+        end
+
+        request = SendPushNotifications.new(mapped_params)
+        request.execute
+
+        response = T.must(request.response)
+        assert_equal 500, response.status_code
+        assert response.duration.is_a?(Float)
+        assert !response.success?
+        assert !response.malformed_request_error?
+        assert !response.too_many_requests_error?
+        assert response.server_error?
+        assert !response.communication_error?
+        assert_nil response.body
+      end
+
+      should 'handle timeout' do
+        stub_request(:post, 'https://exp.host/--/api/v2/push/send').to_timeout
+
+        mapped_params = Mapper::PushMessages.build do |msgs|
+          msgs.push_message do |msg|
+            msg.to    = ['ExponentPushToken[J58oHWJwFIfCiY1ZAUd8tI]']
+            msg.body  = 'Test body'
+          end
+        end
+
+        request = SendPushNotifications.new(mapped_params)
+        request.execute
+
+        response = T.must(request.response)
+        assert_nil response.status_code
+        assert response.duration.is_a?(Float)
+        assert !response.success?
+        assert !response.malformed_request_error?
+        assert !response.too_many_requests_error?
+        assert !response.server_error?
+        assert response.communication_error?
+        assert_equal '[Faraday::ConnectionFailed] => execution expired', response.communication_error_message
+        assert_nil response.body
       end
 
       should 'build payload with all possible push message parameters' do

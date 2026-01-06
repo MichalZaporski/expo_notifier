@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://exp.host/--/api/v2/push/send
+    body:
+      encoding: UTF-8
+      string: '[{"to":["ExponentPushToken[J58oHWJwFIfCiY1ZAUd8tI]","ExponentPushToken[xd]"],"data":{"order_id":123},"title":"Test
+        title","body":"Test body"}]'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Vary:
+      - Accept-Encoding, Origin
+      Content-Security-Policy:
+      - 'default-src ''none'';base-uri ''self'';font-src ''self'' https: data:;form-action
+        ''self'';frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
+        ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '240'
+      Etag:
+      - '"f0-28W1o/tsl5UOjZka/bpGz1EwemQ"'
+      Date:
+      - Tue, 06 Jan 2026 12:13:08 GMT
+      Via:
+      - 1.1 google
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"status":"ok","id":"019b9339-aa4e-7e7e-84ac-840ee072e57e"},{"status":"error","message":"\"ExponentPushToken[xd]\"
+        is not a valid Expo push token","details":{"error":"DeviceNotRegistered","expoPushToken":"ExponentPushToken[xd]"}}]}'
+  recorded_at: Tue, 06 Jan 2026 12:13:08 GMT
+recorded_with: VCR 6.4.0
