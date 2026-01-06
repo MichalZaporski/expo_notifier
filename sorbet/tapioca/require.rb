@@ -5,11 +5,11 @@
 require "active_support/all"
 require "active_support/core_ext/string"
 require "active_support/testing/time_helpers"
-require 'booleans'
-require 'booleans/kernel_extension'
 require 'minitest'
 require 'faraday'
 require 'sorbet-runtime'
 require 'shale'
 require 'shale/builder'
 require 'expo_notifier'
+require "minitest/autorun"
+require "shoulda-context"

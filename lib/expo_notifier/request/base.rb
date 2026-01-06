@@ -14,7 +14,6 @@ module ExpoNotifier
     # An abstract class for building and sending requests.
     # @abstract
     class Base
-      extend T::Sig
       extend T::Generic
 
       RequestBody  = type_member(:out) { { upper: Mapper::Base } }
@@ -153,7 +152,7 @@ module ExpoNotifier
             read_timeout:  @read_timeout,
           },
         ) do |conn|
-          conn.request :authorization, 'Bearer', @access_token
+          conn.request :authorization, 'Bearer', @access_token if @access_token
           conn.adapter @faraday_adapter
         end
       end

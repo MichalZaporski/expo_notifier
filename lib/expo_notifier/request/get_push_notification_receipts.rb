@@ -7,7 +7,7 @@ require_relative '../mapper/push_receipts'
 
 module ExpoNotifier
   module Request
-    class GetPushNotificationReceipt < Base
+    class GetPushNotificationReceipts < Base
       RequestBody  = type_member(:out) { { fixed: Mapper::PushReceiptIds } }
       ResponseBody = type_member(:out) { { fixed: Mapper::PushReceipts } }
 

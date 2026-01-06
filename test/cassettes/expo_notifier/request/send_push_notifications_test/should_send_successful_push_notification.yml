@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://exp.host/--/api/v2/push/send
+    body:
+      encoding: UTF-8
+      string: '[{"to":["ExponentPushToken[J58oHWJwFIfCiY1ZAUd8tI]"],"data":{"order_id":123},"title":"Test
+        title","body":"Test body"}]'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Vary:
+      - Accept-Encoding, Origin
+      Content-Security-Policy:
+      - 'default-src ''none'';base-uri ''self'';font-src ''self'' https: data:;form-action
+        ''self'';frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
+        ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '70'
+      Etag:
+      - '"46-NS0iP6mq8vO1YUoQFO5YnrFlrYA"'
+      Date:
+      - Tue, 06 Jan 2026 00:01:34 GMT
+      Via:
+      - 1.1 google
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"status":"ok","id":"019b909b-e55c-7a0a-8ec5-ce89977b34b6"}]}'
+  recorded_at: Tue, 06 Jan 2026 00:01:34 GMT
+recorded_with: VCR 6.4.0

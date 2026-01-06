@@ -4,6 +4,10 @@ class Minitest::Test
   class << self
     def context(name, &blk); end
 
+    def setup(&blk); end
+
+    def teardown(&blk); end
+
     sig do
       params(
         name_or_matcher: String,

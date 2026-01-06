@@ -7,7 +7,7 @@ require_relative '../mapper/push_tickets'
 
 module ExpoNotifier
   module Request
-    class SendPushNotification < Base
+    class SendPushNotifications < Base
       RequestBody  = type_member(:out) { { fixed: Mapper::PushMessages } }
       ResponseBody = type_member(:out) { { fixed: Mapper::PushTickets } }
 
