@@ -117,6 +117,20 @@ gzip_min_size:      Integer  # Minimum request body size to enable gzip, default
 additional_headers: Hash     # Your additional headers
 ```
 
+#### Example
+
+```ruby
+request = ExpoNotifier::Request::SendPushNotifications.new(
+  params,
+  access_token: 'secret-token',
+  base_url: 'https://example.test',
+  gzip_min_size: 512,
+  additional_headers: {
+    'X-Custom-Header' => 'custom',
+  },
+)
+```
+
 ### Response Handling
 
 All requests return a Response object exposing:
@@ -133,20 +147,6 @@ response.too_many_requests_error?   # 429
 response.server_error?              # 5xx
 response.communication_error?       # HTTP communication error
 response.communication_error_message
-```
-
-#### Example
-
-```ruby
-request = ExpoNotifier::Request::SendPushNotifications.new(
-  params,
-  access_token: 'secret-token',
-  base_url: 'https://example.test',
-  gzip_min_size: 512,
-  additional_headers: {
-    'X-Custom-Header' => 'custom',
-  },
-)
 ```
 
 ### Expo push token validation
